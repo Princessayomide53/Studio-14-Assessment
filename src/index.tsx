@@ -7,10 +7,11 @@ import { extendTheme, ChakraProvider } from '@chakra-ui/react';
 
 const theme = extendTheme({
   breakpoints: {
-    sm: '48em', // 768px
-    md: '64em', // 1024px
-    lg: '80em', // 1280px
-    xl: '90em', // 1440px
+    xs: '19em',
+    sm: '48em',
+    md: '64em',
+    lg: '80em',
+    xl: '90em',
   },
   textStyles: {
     poppins: {
