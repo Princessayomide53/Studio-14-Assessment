@@ -74,7 +74,6 @@ const Nav = () => {
           wrap='wrap'
           maxW={{
             base: '100%',
-            xs: '18em',
             sm: '48em',
             md: '64em',
             lg: '75em',
