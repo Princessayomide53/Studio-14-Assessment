@@ -169,11 +169,11 @@ const Filters: React.FC = () => {
             backgroundColor='#F1F1F1'
             onClick={() => setIsOpen((prev) => !prev)}
           >
-            {/* <IconButton
+            <IconButton
               aria-label='Toggle filters'
-              icon={<IoFilter size={32} />}
+              icon={React.createElement(IoFilter as any, { size: 32 })}
               variant='ghost'
-            /> */}
+            />
             <Text textStyle='inter' fontWeight='medium' fontSize='16px'>
               Show Filters
             </Text>

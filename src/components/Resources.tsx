@@ -1,7 +1,6 @@
 import { Flex, Box, SimpleGrid, Text } from '@chakra-ui/react';
 import React from 'react';
 import Filters from './Filters';
-
 import { useResources } from '../context/Resources';
 const Resources = () => {
   const { filteredResources } = useResources();
@@ -29,7 +28,6 @@ const Resources = () => {
         pb={{ base: '10', md: '7' }}
       >
         {filteredResources.map((card, index) => {
-          // const Icon = card.icon;
           return (
             <Box
               key={index}
@@ -63,9 +61,13 @@ const Resources = () => {
                 />
               </Box>
 
-              <Box position='absolute' top='42px' left='25px' zIndex={2}>
-                {/* <Icon size={32} color='black' /> */}
+              
+              <Box position="absolute" top="42px" left="25px" zIndex={2}>
+              {card.icon
+              ? React.createElement(card.icon as any, { size: 32, color: 'black' })
+              : null}
               </Box>
+
               <Box position='relative' zIndex={1} p={7} pt='42%'>
                 <Text
                   fontSize='18px'
