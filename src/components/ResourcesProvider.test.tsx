@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { ResourcesProvider, useResources } from '../context/Resources';
+import { ResourcesProvider, useResources } from '../context/ResourcesCtx';
 import userEvent from '@testing-library/user-event';
 
 

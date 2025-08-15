@@ -8,7 +8,7 @@ import {
 } from '@chakra-ui/react';
 import { SearchIcon } from '@chakra-ui/icons';
 import React from 'react';
-import { useResources } from '../context/Resources';
+import { useResources } from '../context/ResourcesCtx';
 import { motion } from 'framer-motion';
 const MotionText = motion(Text);
 

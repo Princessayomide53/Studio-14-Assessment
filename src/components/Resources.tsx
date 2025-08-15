@@ -1,7 +1,7 @@
 import { Flex, Box, SimpleGrid, Text } from '@chakra-ui/react';
 import React from 'react';
 import Filters from './Filters';
-import { useResources } from '../context/Resources';
+import { useResources } from '../context/ResourcesCtx';
 import { motion } from 'framer-motion';
 
 

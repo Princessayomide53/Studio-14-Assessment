@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Text, Flex } from '@chakra-ui/react';
 import Resources from '../components/Resources';
 import { motion } from 'framer-motion';
-import { useResources } from '../context/Resources';
+import { useResources } from '../context/ResourcesCtx';
 import Employee from './Employee';
 const MotionText = motion(Text);
 

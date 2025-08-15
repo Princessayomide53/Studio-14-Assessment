@@ -15,7 +15,7 @@ import { ChevronDownIcon } from '@chakra-ui/icons';
 import { motion } from 'framer-motion';
 import { Switch } from '@chakra-ui/react';
 import { Twirl as Hamburger } from 'hamburger-react';
-import { useResources } from '../context/Resources';
+import { useResources } from '../context/ResourcesCtx';
 import { useLocation } from 'react-router-dom';
 import { Link as RouterLink } from 'react-router-dom';
 

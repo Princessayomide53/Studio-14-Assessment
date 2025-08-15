@@ -12,7 +12,7 @@ import {
 import { motion, AnimatePresence } from 'framer-motion';
 import { IconButton } from '@chakra-ui/react';
 import { IoFilter } from 'react-icons/io5';
-import { useResources } from '../context/Resources';
+import { useResources } from '../context/ResourcesCtx';
 
 const MotionBox = motion(Box);
 

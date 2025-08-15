@@ -128,6 +128,9 @@ export const ResourcesProvider = ({ children }: ResourcesProviderProps) => {
           item.type.toLowerCase().includes(word)
       );
 
+       if (selectedFilters.some((f) => f.startsWith('sample'))) {
+      return matchesSearch;
+    }
       const matchesFilter =
         selectedFilters.length === 0 ||
         
@@ -144,13 +147,21 @@ export const ResourcesProvider = ({ children }: ResourcesProviderProps) => {
     });
   }, [resources, searchTerm, selectedFilters]);
 
-  const toggleFilter = (filterLabel: string) => {
-  setSelectedFilters((prev) =>
-    prev.includes(filterLabel)
+  
+const toggleFilter = (filterLabel: string) => {
+  setSelectedFilters((prev) => {
+    const isSample = filterLabel.startsWith('sample-');
+
+    if (isSample) {
+      return [filterLabel];
+    }
+
+    return prev.includes(filterLabel)
       ? prev.filter((f) => f !== filterLabel)
-      : [...prev, filterLabel]
-  );
+      : [...prev, filterLabel];
+  });
 };
+
 
   return (
     <ResourcesContext.Provider

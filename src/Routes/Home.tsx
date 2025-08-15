@@ -2,7 +2,7 @@ import React from 'react';
 import Nav from '../components/Nav';
 import Hero from '../components/Hero';
 import Resources from '../components/Resources';
-import { useResources } from '../context/Resources';
+import { useResources } from '../context/ResourcesCtx';
 import Employee from './Employee';
 
 const Home = () => {

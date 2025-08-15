@@ -3,7 +3,7 @@ import './App.css';
 import Nav from './components/Nav';
 import Hero from './components/Hero';
 import Resources from './components/Resources';
-import { ResourcesProvider } from './context/Resources';
+import { ResourcesProvider } from './context/ResourcesCtx';
 import { BrowserRouter } from 'react-router-dom';
 import AppRoutes from './components/Routes';
 
