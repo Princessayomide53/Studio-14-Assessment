@@ -75,8 +75,8 @@ const Resources = () => {
                 top={-3}
                 bottom={0}
                 left={index === 4 ? '-45px' : '' }
-                right={ index === 1 ? 'auto' : index === 3 ? '-26px' index === 5 ? 'auto' : index === 0 || index === 2 ? '0px' : ''}
-                height={index === 5 ? '45%' : '40%'}
+                right={ index === 1 ? 'auto' : index === 3 ? '-26px' : index === 5 ? 'auto' : index === 0 || index === 2 ? '0px' : ''}
+                height={{ base: index === 5 ? '35%' : '32%', md: index === 5 ? '45%' : '40%' }}
               >
                 <img
                   src={card.img}
