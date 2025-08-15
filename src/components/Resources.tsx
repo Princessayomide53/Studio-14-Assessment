@@ -74,15 +74,17 @@ const Resources = () => {
                 position='absolute'
                 top={-3}
                 bottom={0}
-                left={
-                     card.id === 1 ? '50px' : card.id === 6 ? '120px' : ''
-                      }
-                right={
-                      card.id === 3 ? '-26px' :
-                       card.id === 5 ? 'auto' :
-                       
-                         ''
-                          }
+                left={{
+            base: card.id === 1 ? '90px' : card.id === 2 ? '-20px': card.id === 4 ? '-20px': card.id === 5 ? '-20px': card.id === 6 ? '125px' : '',
+            md: card.id === 1 ? '50px' : card.id === 6 ? '120px' : '',
+             }}
+
+                right={{
+                base: card.id === 3 ? '-10px' : card.id === 5 ? 'auto' : '',
+               md: card.id === 3 ? '-26px' : card.id === 5 ? 'auto' : '',
+               
+              }}
+
                 height={{ base: card.id === 6 ? '35%' : '32%', }}
               >
                 <img
