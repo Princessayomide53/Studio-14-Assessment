@@ -217,7 +217,7 @@ const Filters: React.FC = () => {
       <VStack align='start'>
         {isDesktop && (
           <>
-            <Text textStyle='inter' fontWeight='bold' fontSize='16px' pb='1.5' mt={{ md: -6, lg:-20}}>
+            <Text textStyle='inter' fontWeight='bold' fontSize='16px' pb='1.5' pl='5' mt={{ md: -6, lg:-20}}>
               Filters
             </Text>
             <Divider width='271px' borderColor='#E0E0E0' />

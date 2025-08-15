@@ -59,7 +59,7 @@ const Nav = () => {
         as='nav'
         bg='white'
         boxShadow='md'
-        px={{ xs: 2.5, md: 7}}
+        px={{ base: 3, xs: 2.5,  md: 7}}
         py={4}
         position="fixed"   
         top={0}            
