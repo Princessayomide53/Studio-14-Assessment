@@ -74,8 +74,8 @@ const Resources = () => {
                 position='absolute'
                 top={-3}
                 bottom={0}
-                left={index === 4 ? '-45px' : index === 5 ? 'auto' :  : '' }
-                right={ index === 1 ? 'auto' : index === 3 ? '26px'  : index === 0 || index === 2 ? '0px' : ''}
+                left={index === 4 ? '-45px' : '' }
+                right={ index === 1 ? 'auto' : index === 3 ? '-26px' index === 5 ? 'auto' : index === 0 || index === 2 ? '0px' : ''}
                 height={index === 5 ? '45%' : '40%'}
               >
                 <img
