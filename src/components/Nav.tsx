@@ -59,7 +59,7 @@ const Nav = () => {
         as='nav'
         bg='white'
         boxShadow='md'
-        px={{base: 7, xs: 2.5, md: 7}}
+        px={{ xs: 2.5, md: 7}}
         py={4}
         position="fixed"   
         top={0}            
@@ -83,6 +83,7 @@ const Nav = () => {
           mx='auto'
           w='100%'
         >
+          <Flex direction='row' gap={32}>
           <HStack spacing={3} align='center'>
             <Link href='/'>
             <img src={Logo} alt='Logo' />
@@ -103,7 +104,6 @@ const Nav = () => {
               LOGO
             </Text>
           </HStack>
-
           <HStack spacing={8} display={{ base: 'none', md: 'flex' }}>
             {navLink.map((link) => (
               <Box
@@ -143,6 +143,8 @@ const Nav = () => {
               </Box>
             ))}
           </HStack>
+          </Flex>
+          
 
           <HStack spacing='4'>
             <Switch

@@ -30,7 +30,7 @@ const Resources = () => {
       mx='auto'
       px={{ base: '0', md: '6' }}
       gap={8}
-      mt={{ base: 0, md: 14 }}
+      mt={{ base: 0, md: 14 ,lg: 20 }}
     >
       <Box flex='1' maxW={{ base: '100%', md: '300px' }}>
         <Filters />
