@@ -111,6 +111,7 @@ export const ResourcesProvider = ({ children }: ResourcesProviderProps) => {
 
   const filteredResources = useMemo(() => {
     const searchWords = searchTerm.toLowerCase().trim().split(/\s+/);
+    const isSampleActive = selectedFilters.some(f => f.startsWith('sample'));
 
     return resources.filter((item) => {
       const matchesSearch = searchWords.every(
@@ -121,7 +122,7 @@ export const ResourcesProvider = ({ children }: ResourcesProviderProps) => {
           item.type.toLowerCase().includes(word)
       );
 
-       if (selectedFilters.some((f) => f.startsWith('sample'))) {
+      if (isSampleActive) {
       return matchesSearch;
     }
       const matchesFilter =
@@ -142,17 +143,11 @@ export const ResourcesProvider = ({ children }: ResourcesProviderProps) => {
 
   
 const toggleFilter = (filterLabel: string) => {
-  setSelectedFilters((prev) => {
-    const isSample = filterLabel.startsWith('sample');
-
-    if (isSample) {
-      return [filterLabel];
-    }
-
-    return prev.includes(filterLabel)
+  setSelectedFilters((prev) =>
+    prev.includes(filterLabel)
       ? prev.filter((f) => f !== filterLabel)
-      : [...prev, filterLabel];
-  });
+      : [...prev, filterLabel]
+  );
 };
 
 
