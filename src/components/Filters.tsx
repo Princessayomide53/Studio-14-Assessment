@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Box,
   Stack,
@@ -9,6 +9,11 @@ import {
   Divider,
   HStack,
 } from '@chakra-ui/react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { IconButton } from '@chakra-ui/react';
+import { IoFilter } from 'react-icons/io5';
+
+const MotionBox = motion(Box);
 
 type CustomCheckboxProps = {
   value: string;
@@ -54,7 +59,7 @@ const Section: React.FC<SectionProps> = ({ title, items }) => (
       fontWeight='bold'
       fontSize='16px'
       color='#3F3F3F'
-      mb='5'
+      mb='4'
     >
       {title}
     </Heading>
@@ -74,6 +79,18 @@ const Section: React.FC<SectionProps> = ({ title, items }) => (
 );
 
 const Filters: React.FC = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsDesktop(window.innerWidth >= 1024);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const sections = [
     {
       title: 'Key Foundational Principles',
@@ -96,17 +113,81 @@ const Filters: React.FC = () => {
   ];
 
   return (
-    <Stack direction={{ base: 'column', md: 'column' }} spacing={12} pb='7'>
-      <VStack align='start'>
-        <Text textStyle='inter' fontWeight='bold' fontSize='16px' pb='3' pl='7'>
-          Filters
-        </Text>
-        <Divider orientation='horizontal' width='271px' borderColor='#E0E0E0' />
-      </VStack>
+    <Stack
+      direction={{ base: 'column', md: 'column' }}
+      spacing={{ base: '0', lg: '12' }}
+      pb='7'
+    >
+      <Box position='relative' w='100%'>
+        {!isDesktop && (
+          <HStack
+            align='center'
+            justify='center'
+            gap={5}
+            w='100%'
+            px={2}
+            py={2}
+            borderWidth='1px'
+            borderColor='gray.200'
+            cursor='pointer'
+            backgroundColor='#F1F1F1'
+            onClick={() => setIsOpen((prev) => !prev)}
+          >
+            <IconButton
+              aria-label='Toggle filters'
+              icon={<IoFilter size={32} />}
+              variant='ghost'
+            />
+            <Text textStyle='inter' fontWeight='medium' fontSize='16px'>
+              Show Filters
+            </Text>
+          </HStack>
+        )}
 
-      {sections.map((section, idx) => (
-        <Section key={idx} title={section.title} items={section.items} />
-      ))}
+        <AnimatePresence initial={false}>
+          {!isDesktop && isOpen && (
+            <MotionBox
+              key='filters'
+              bg='white'
+              p={4}
+              position='absolute'
+              top='100%'
+              left={0}
+              width='100%'
+              zIndex={10}
+              borderRadius='sm'
+              borderWidth='1px'
+              borderColor='gray.200'
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              overflow='hidden'
+              transition={{ duration: 0.3 }}
+            >
+              {sections.map((section, idx) => (
+                <Box key={idx} mb={idx !== sections.length - 1 ? 6 : 0}>
+                  <Section title={section.title} items={section.items} />
+                </Box>
+              ))}
+            </MotionBox>
+          )}
+        </AnimatePresence>
+      </Box>
+      <VStack align='start'>
+        {isDesktop && (
+          <>
+            <Text textStyle='inter' fontWeight='bold' fontSize='16px' pb='1.5'>
+              Filters
+            </Text>
+            <Divider width='271px' borderColor='#E0E0E0' />
+            {sections.map((section, idx) => (
+              <Box key={idx} mb={idx !== sections.length - 1 ? 6 : 0}>
+                <Section title={section.title} items={section.items} />
+              </Box>
+            ))}
+          </>
+        )}
+      </VStack>
     </Stack>
   );
 };

@@ -6,6 +6,7 @@ import {
   InputRightElement,
   IconButton,
   InputLeftElement,
+  Box,
 } from '@chakra-ui/react';
 import { SearchIcon } from '@chakra-ui/icons';
 import React from 'react';
@@ -13,26 +14,32 @@ import React from 'react';
 const Hero = () => {
   return (
     <Flex
-      bg='#F2F2F2'
+      bg='#FAFAFA'
       direction='column'
       align='center'
       justify='center'
       minH='25rem'
       px={8}
     >
-      <Text textStyle='poppins' fontSize='52px' fontWeight='bold' color='black'>
+      <Text
+        textStyle='poppins'
+        fontSize={['40px', '52px']}
+        fontWeight='bold'
+        color='black'
+      >
         Resources
       </Text>
 
       <Text
         textStyle='inter'
         fontWeight='normal'
-        fontSize='16px'
+        fontSize={['18px', '16px']}
         align='center'
       >
         Consectetur adipiscing elit duis tristique sollicitudin nibh sit amet
         commodo
-        <br /> nulla facilisi nullam vehicula ipsum a arcu cursus vitae congue
+        <Box as='br' display={{ base: 'none', md: 'inline' }} /> nulla facilisi
+        nullam vehicula ipsum a arcu cursus vitae congue
       </Text>
 
       <InputGroup maxW='853px' pt='10'>

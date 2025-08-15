@@ -61,14 +61,15 @@ const Resources = () => {
   ];
   return (
     <Flex
-      direction='row'
-      maxW={{ base: '100%', sm: '48em', md: '64em', lg: '80em', xl: '80em' }}
+      direction={{ base: 'column', md: 'row' }}
+      alignItems='flex-start'
+      maxW={{ base: '100%', md: '62em', lg: '80em', xl: '80em' }}
       mx='auto'
-      px={6}
+      px={{ base: '0', md: '6' }}
       gap={8}
-      mt='14'
+      mt={{ base: 0, md: 14 }}
     >
-      <Box flex='1' maxW='300px'>
+      <Box flex='1' maxW={{ base: '100%', md: '300px' }}>
         <Filters />
       </Box>
 
@@ -77,6 +78,9 @@ const Resources = () => {
         height='280px'
         spacingX={8}
         spacingY={8}
+        flex='3'
+        justifyItems={{ base: 'center', lg: 'stretch' }}
+        pb={{ base: '10', md: '7' }}
       >
         {content.map((card, index) => (
           <Box
