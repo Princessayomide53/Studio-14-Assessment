@@ -96,13 +96,13 @@ const Resources = () => {
               : null}
               </Box>
 
-              <Box position='relative' zIndex={1} p={{base: 4, md: 7}} pt={{base: '48%', md: '42%'}}>
+              <Box position='relative' zIndex={1} p={{base: 4, md: 7}} pt={{base: '48%', md: '45%'}}>
                 <Text
                   fontSize='18px'
                   textStyle='poppins'
                   fontWeight='bold'
                   mb={2}
-                  mt={index === 5 ? '-5' : ''}
+                  mt={index === 5 ? '-7' : ''}
                 >
                   {card.title}
                 </Text>
@@ -111,7 +111,7 @@ const Resources = () => {
                   textStyle='inter'
                   lineHeight='25px'
                   fontWeight='normal'
-                  mb={2}
+                  mb={3}
                   color='#828282'
                 >
                   {card.text}

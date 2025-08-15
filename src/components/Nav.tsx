@@ -22,7 +22,7 @@ import { Link as RouterLink } from 'react-router-dom';
 
 const Nav = () => {
   const [nav, setNav] = useState(false);
-  const { role, setRole, activePage, setActivePage } = useResources();
+  const { role, setRole } = useResources();
   const MotionBox = chakra(motion.div);
   const location = useLocation();
 

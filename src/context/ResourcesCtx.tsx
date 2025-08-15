@@ -22,7 +22,6 @@ interface Resource {
   text: string;
   description: string;
   type: string;
-  category: string;
 }
 
 interface ResourcesContextType {
@@ -56,7 +55,6 @@ export const ResourcesProvider = ({ children }: ResourcesProviderProps) => {
       text: 'Sample Topic',
       description: 'Secure Base',
       type: 'Link',
-      category: 'sample-1',
     },
     {
       id: 2,
@@ -66,7 +64,6 @@ export const ResourcesProvider = ({ children }: ResourcesProviderProps) => {
       text: 'Sample Topic',
       description: 'Secure Base',
       type: 'Video',
-      category: 'sample-2',
     },
     {
       id: 3,
@@ -76,7 +73,6 @@ export const ResourcesProvider = ({ children }: ResourcesProviderProps) => {
       text: 'Sample Topic',
       description: 'Secure Base',
       type: 'Link',
-      category: 'sample-3',
     },
     {
       id: 4,
@@ -86,7 +82,6 @@ export const ResourcesProvider = ({ children }: ResourcesProviderProps) => {
       text: 'Sample Topic',
       description: 'Wellbeing',
       type: 'Video',
-      category: 'sample-4',
     },
     {
       id: 5,
@@ -96,7 +91,6 @@ export const ResourcesProvider = ({ children }: ResourcesProviderProps) => {
       text: 'Sample Topic',
       description: 'Secure Base',
       type: 'PDF',
-      category: 'sample-5',
     },
     {
       id: 6,
@@ -106,7 +100,6 @@ export const ResourcesProvider = ({ children }: ResourcesProviderProps) => {
       text: 'Sample Topic',
       description: 'Secure Base',
       type: 'PDF',
-      category: 'sample-6',
     },
   ];
 
@@ -150,7 +143,7 @@ export const ResourcesProvider = ({ children }: ResourcesProviderProps) => {
   
 const toggleFilter = (filterLabel: string) => {
   setSelectedFilters((prev) => {
-    const isSample = filterLabel.startsWith('sample-');
+    const isSample = filterLabel.startsWith('sample');
 
     if (isSample) {
       return [filterLabel];
