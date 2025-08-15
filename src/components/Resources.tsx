@@ -75,7 +75,7 @@ const Resources = () => {
                 top={-3}
                 bottom={0}
                 left={{
-            base: card.id === 1 ? '90px' : card.id === 2 ? '-20px': card.id === 4 ? '-20px': card.id === 5 ? '-20px': card.id === 6 ? '125px' : '',
+            base: card.id === 1 ? '95px' : card.id === 2 ? '-30px': card.id === 4 ? '-30px': card.id === 5 ? '-20px': card.id === 6 ? '125px' : '',
             md: card.id === 1 ? '50px' : card.id === 6 ? '120px' : '',
              }}
 
