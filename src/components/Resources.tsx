@@ -53,7 +53,7 @@ const Resources = () => {
         pb={{ base: 10, md: 7 }}
 
       >
-        {filteredResources.map((card, index) => {
+        {filteredResources.map((card, id) => {
           return (
             <MotionBox
               key={index}
@@ -74,9 +74,18 @@ const Resources = () => {
                 position='absolute'
                 top={-3}
                 bottom={0}
-                left={index === 4 ? '-45px' : '' }
-                right={ index === 1 ? 'auto' : index === 3 ? '-26px' : index === 5 ? 'auto' : index === 0 || index === 2 ? '0px' : ''}
-                height={{ base: index === 5 ? '35%' : '32%', md: index === 5 ? '45%' : '40%' }}
+                left={
+                  card.id === 5 ? '-45px' :
+                     card.id === 1 || card.id === 2 || card.id === 6 ? '0px' :
+                     ''
+                      }
+                right={
+                      card.id === 3 ? '-26px' :
+                       card.id === 5 ? '-20px' :
+                       card.id === 1 || card.id === 2 || card.id === 6 ? '0px' :
+                         ''
+                          }
+                height={{ base: Card.id === 6 ? '35%' : '32%', md: index === 6 ? '45%' : '40%' }}
               >
                 <img
                   src={card.img}
@@ -84,7 +93,7 @@ const Resources = () => {
                   style={{
                     width: '100%',
                     height: '100%',
-                    objectFit: 'contain',
+                    objectFit: 'cover',
                   }}
                 />
               </Box>
