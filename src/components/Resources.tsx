@@ -2,8 +2,26 @@ import { Flex, Box, SimpleGrid, Text } from '@chakra-ui/react';
 import React from 'react';
 import Filters from './Filters';
 import { useResources } from '../context/Resources';
+import { motion } from 'framer-motion';
+
+
+const MotionBox = motion(Box);
 const Resources = () => {
   const { filteredResources } = useResources();
+
+ const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.15,
+      },
+    },
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
+  };
 
   return (
     <Flex
@@ -18,18 +36,26 @@ const Resources = () => {
         <Filters />
       </Box>
 
+      <MotionBox
+        flex='3'
+        width='100%'
+        initial='hidden'
+        animate='visible'
+        variants={containerVariants}
+      >
       <SimpleGrid
         columns={{ base: 1, sm: 2, lg: 3 }}
-        height='280px'
+        height={{base: '100%', md: '280px'}}
         spacingX={8}
         spacingY={8}
         flex='3'
         justifyItems={{ base: 'center', lg: 'stretch' }}
-        pb={{ base: '10', md: '7' }}
+        pb={{ base: 10, md: 7 }}
+
       >
         {filteredResources.map((card, index) => {
           return (
-            <Box
+            <MotionBox
               key={index}
               position='relative'
               bg='white'
@@ -39,7 +65,8 @@ const Resources = () => {
               height='280px'
               overflow='hidden'
               _hover={{ boxShadow: 'lg', transform: 'translateY(-4px)' }}
-              transition='all 0.2s ease'
+              transition={{duration: 0.2, ease: "easeInOut"}}
+              variants={cardVariants}
             >
               <Box
                 as='figure'
@@ -103,10 +130,11 @@ const Resources = () => {
                   {card.description}
                 </Box>
               </Box>
-            </Box>
+            </MotionBox>
           );
         })}
       </SimpleGrid>
+      </MotionBox>
     </Flex>
   );
 };

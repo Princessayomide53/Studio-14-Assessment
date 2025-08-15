@@ -1,9 +1,30 @@
 import React from 'react';
+import { Box, Text, Flex } from '@chakra-ui/react';
+import Resources from '../components/Resources';
+import { motion } from 'framer-motion';
+const MotionText = motion(Text);
 
-type Props = {};
 
-const Employee = (props: Props) => {
-  return <div>Employee</div>;
+const Employee = () => {
+  return (
+    <Box px={{ base: 0, md: 8 }} py={{ base: 6, md: 12 }}>
+      <Flex justify="center" mb={8}>
+        <MotionText
+          textAlign="center"
+          fontSize={{ base: '3xl', md: '6xl' }} 
+          fontWeight="bold"
+          textStyle="poppins"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+        >
+          EMPLOYEE
+        </MotionText>
+      </Flex>
+
+      <Resources />
+    </Box>
+  )
 };
 
 export default Employee;

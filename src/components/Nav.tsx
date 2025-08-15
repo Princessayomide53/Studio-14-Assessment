@@ -216,6 +216,7 @@ const Nav = () => {
             top='70px'
             left='0'
             w='100%'
+            zIndex={20}
             py={6}
             boxShadow='md'
             display={{ md: 'none' }}

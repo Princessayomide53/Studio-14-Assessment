@@ -9,6 +9,8 @@ import {
 import { SearchIcon } from '@chakra-ui/icons';
 import React from 'react';
 import { useResources } from '../context/Resources';
+import { motion } from 'framer-motion';
+const MotionText = motion(Text);
 
 const Hero = () => {
   const { searchTerm, setSearchTerm } = useResources();
@@ -21,26 +23,32 @@ const Hero = () => {
       minH='25rem'
       px={8}
     >
-      <Text
+      <MotionText
         textStyle='poppins'
         fontSize={['40px', '52px']}
         fontWeight='bold'
         color='black'
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
       >
         Resources
-      </Text>
+      </MotionText>
 
-      <Text
+      <MotionText
         textStyle='inter'
         fontWeight='normal'
         fontSize={['18px', '16px']}
         align='center'
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.20 }}
       >
         Consectetur adipiscing elit duis tristique sollicitudin nibh sit amet
         commodo
         <Box as='br' display={{ base: 'none', md: 'inline' }} /> nulla facilisi
         nullam vehicula ipsum a arcu cursus vitae congue
-      </Text>
+      </MotionText>
 
       <InputGroup maxW='853px' pt='10'>
         <InputLeftElement pl='8' pt='69px' pointerEvents='none'>

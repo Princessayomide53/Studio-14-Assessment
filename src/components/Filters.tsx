@@ -222,7 +222,7 @@ const Filters: React.FC = () => {
             </Text>
             <Divider width='271px' borderColor='#E0E0E0' />
             {sections.map((section, idx) => (
-              <Box key={idx} mb={idx !== sections.length - 1 ? 6 : 0}>
+              <Box key={idx} mb={idx !== sections.length - 1 ? 6 : 0} mt={3}>
                 <Section
                   title={section.title}
                   items={section.items}

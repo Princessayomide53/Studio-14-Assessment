@@ -130,6 +130,7 @@ export const ResourcesProvider = ({ children }: ResourcesProviderProps) => {
 
       const matchesFilter =
         selectedFilters.length === 0 ||
+        
         selectedFilters.includes(item.description) ||
         selectedFilters.includes(item.type) ||
         selectedFilters.includes(item.category);
