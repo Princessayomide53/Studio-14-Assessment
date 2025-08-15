@@ -74,7 +74,6 @@ const Nav = () => {
           wrap='wrap'
           maxW={{
             base: '100%',
-            // xs: '18em',
             sm: '48em',
             md: '64em',
             lg: '75em',
@@ -111,7 +110,7 @@ const Nav = () => {
                 fontSize={['12px', '14px']}
                 fontWeight='medium'
                 textStyle='poppins'
-                color={location.pathname === link.links ? 'blue.500' : 'black'}
+                color={location.pathname === link.links ? '#314EF9' : 'black'}
                 position='relative'
                 _after={{
                   content: '""',
@@ -133,10 +132,10 @@ const Nav = () => {
                   textStyle='poppins'
                   pb='20'
                   color={
-                    location.pathname === link.links ? 'blue.500' : 'black'
+                    location.pathname === link.links ? '#314EF9' : 'black'
                   }
                   textDecoration="none"        
-                  _hover={{ textDecoration: 'none' }}
+                  _hover={{ textDecoration: 'none',color: '#314EF9', }}
                 >
                   {link.label}
                 </Link>
@@ -246,10 +245,11 @@ const Nav = () => {
                 to={link.links}
                 onClick={() => setNav(false)}
                   fontWeight='medium'
-                  color={location.pathname === link.links ? 'blue.500' : 'black'}
+                  color={location.pathname === link.links ? '#314EF9' : 'black'}
                   borderBottom={location.pathname === link.links ? '2px solid #314EF9' : 'none'}
                    pb={location.pathname === link.links ? '2px' : '0'}
-                  
+                   textDecoration="none"        
+                  _hover={{ textDecoration: 'none', color: '#314EF9', }}
                   textAlign='center'
                   mb='3'
                 >
