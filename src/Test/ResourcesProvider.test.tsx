@@ -48,7 +48,6 @@ describe('ResourcesProvider', () => {
 
     const items = screen.getAllByRole('listitem');
 
-    // This for the 5 resources with description 'Secure Base'
     expect(items.length).toBe(5);
   });
 
