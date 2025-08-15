@@ -90,8 +90,6 @@ const Nav = () => {
             <Text
               fontSize={{
                 base: '23px',
-                xs: '14px',
-                sm: '14px',
                 md: '16px',
                 lg: '18px',
                 xl: '23px',
