@@ -12,10 +12,11 @@ import green from '../assets/Svgs/green.svg';
 import orange from '../assets/Svgs/orange.svg';
 import blue from '../assets/Svgs/blue.svg';
 import { PiFilePdfDuotone, PiVideo, PiLinkBold } from 'react-icons/pi';
+import { IconType } from 'react-icons';
 
 interface Resource {
   id: number;
-  icon: ReactElement;
+  icon: IconType;
   img: string;
   title: string;
   text: string;
@@ -31,6 +32,10 @@ interface ResourcesContextType {
   setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
   selectedFilters: string[];
   toggleFilter: (filter: string) => void;
+  role: 'employer' | 'employee';
+  setRole: (role: 'employer' | 'employee') => void;
+  activePage: string;
+  setActivePage: (page: string) => void;
 }
 
 const ResourcesContext = createContext<ResourcesContextType | undefined>(
@@ -45,7 +50,7 @@ export const ResourcesProvider = ({ children }: ResourcesProviderProps) => {
   const initialResources: Resource[] = [
     {
       id: 1,
-      icon: <PiLinkBold size={32} color='black' />,
+      icon: PiLinkBold,
       img: red,
       title: 'The ultimate guide to Workplace Chat',
       text: 'Sample Topic',
@@ -55,7 +60,7 @@ export const ResourcesProvider = ({ children }: ResourcesProviderProps) => {
     },
     {
       id: 2,
-      icon: <PiVideo size={32} color='black' />,
+      icon: PiVideo,
       img: green,
       title: 'The ultimate guide to Workplace Chat',
       text: 'Sample Topic',
@@ -65,7 +70,7 @@ export const ResourcesProvider = ({ children }: ResourcesProviderProps) => {
     },
     {
       id: 3,
-      icon: <PiLinkBold size={32} color='black' />,
+      icon: PiLinkBold,
       img: red,
       title: 'The ultimate guide to Workplace Chat',
       text: 'Sample Topic',
@@ -76,7 +81,7 @@ export const ResourcesProvider = ({ children }: ResourcesProviderProps) => {
     {
       id: 4,
       img: orange,
-      icon: <PiVideo size={32} color='black' />,
+      icon: PiVideo,
       title: 'The ultimate guide to Workplace Chat',
       text: 'Sample Topic',
       description: 'Wellbeing',
@@ -86,7 +91,7 @@ export const ResourcesProvider = ({ children }: ResourcesProviderProps) => {
     {
       id: 5,
       img: yellow,
-      icon: <PiFilePdfDuotone size={32} color='black' />,
+      icon: PiFilePdfDuotone,
       title: 'The ultimate guide to Workplace Chat',
       text: 'Sample Topic',
       description: 'Secure Base',
@@ -96,7 +101,7 @@ export const ResourcesProvider = ({ children }: ResourcesProviderProps) => {
     {
       id: 6,
       img: blue,
-      icon: <PiFilePdfDuotone size={32} color='black' />,
+      icon: PiFilePdfDuotone,
       title: 'Taking stock of mental health in your workplace',
       text: 'Sample Topic',
       description: 'Secure Base',
@@ -108,6 +113,8 @@ export const ResourcesProvider = ({ children }: ResourcesProviderProps) => {
   const [resources] = useState<Resource[]>(initialResources);
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>('');
+  const [role, setRole] = useState<'employer' | 'employee'>('employer');
+  const [activePage, setActivePage] = useState<string>('dashboard');
 
   const filteredResources = useMemo(() => {
     const searchWords = searchTerm.toLowerCase().trim().split(/\s+/);
@@ -148,6 +155,10 @@ export const ResourcesProvider = ({ children }: ResourcesProviderProps) => {
         setSearchTerm,
         selectedFilters,
         toggleFilter,
+        role,
+        setRole,
+        activePage,
+        setActivePage,
       }}
     >
       {children}
