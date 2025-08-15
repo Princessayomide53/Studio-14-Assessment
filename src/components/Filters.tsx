@@ -56,7 +56,7 @@ const CustomCheckbox: React.FC<CustomCheckboxProps> = ({
   );
 };
 
-type FilterItem = string | { label: string; value: string };
+type FilterItem = string | { label: string; id: string };
 
 type SectionProps = {
   title: string;
@@ -83,12 +83,12 @@ const Section: React.FC<SectionProps> = ({
     </Heading>
 
     {items.map((item, index) => {
-      const value = typeof item === 'string' ? item : item.value;
-      const label = typeof item === 'string' ? item : item.label;
-
+      
+const value = typeof item === 'string' ? item : item.id;
+  const label = typeof item === 'string' ? item : item.label;
       return (
         <CustomCheckbox
-          key={index}
+          key={value}
           value={value}
           isChecked={selectedFilters.includes(value)}
           onChange={toggleFilter}
@@ -138,13 +138,13 @@ const Filters: React.FC = () => {
     },
     {
       title: 'Categories',
-      items: [
-        { label: 'Sample', value: 'sample-1' },
-        { label: 'Sample', value: 'sample-2' },
-        { label: 'Sample', value: 'sample-3' },
-        { label: 'Sample', value: 'sample-4' },
-        { label: 'Sample', value: 'sample-5' },
-      ],
+      items: [     
+    { label: 'Sample', id: 'sample1' },
+    { label: 'Sample', id: 'sample2' },
+    { label: 'Sample', id: 'sample3' },
+    { label: 'Sample', id: 'sample4' },
+    { label: 'Sample', id: 'sample5' },
+  ],
     },
   ];
 

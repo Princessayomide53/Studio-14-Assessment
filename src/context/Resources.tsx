@@ -133,19 +133,24 @@ export const ResourcesProvider = ({ children }: ResourcesProviderProps) => {
         
         selectedFilters.includes(item.description) ||
         selectedFilters.includes(item.type) ||
-        selectedFilters.includes(item.category);
+        selectedFilters.some(
+        (filter) =>
+          item.description.includes(filter) ||
+          item.type.includes(filter) ||
+          item.text.includes(filter) 
+      );
 
       return matchesSearch && matchesFilter;
     });
   }, [resources, searchTerm, selectedFilters]);
 
-  const toggleFilter = (filter: string) => {
-    setSelectedFilters((prev) =>
-      prev.includes(filter)
-        ? prev.filter((f) => f !== filter)
-        : [...prev, filter]
-    );
-  };
+  const toggleFilter = (filterLabel: string) => {
+  setSelectedFilters((prev) =>
+    prev.includes(filterLabel)
+      ? prev.filter((f) => f !== filterLabel)
+      : [...prev, filterLabel]
+  );
+};
 
   return (
     <ResourcesContext.Provider
