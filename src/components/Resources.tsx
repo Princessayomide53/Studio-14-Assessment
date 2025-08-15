@@ -61,9 +61,10 @@ const Resources = () => {
               bg='white'
               borderRadius='10px'
               boxShadow='md'
-              width='264px'
+              width={{base: '325px', xs:'280px', md: '264px'}}
               height='280px'
               overflow='hidden'
+              px={{base: '12px', md: '0'}}
               _hover={{ boxShadow: 'lg', transform: 'translateY(-4px)' }}
               transition={{duration: 0.2, ease: "easeInOut"}}
               variants={cardVariants}
@@ -74,7 +75,7 @@ const Resources = () => {
                 top={-3}
                 bottom={0}
                 left={index === 5 ? '24' : index === 0 || index === 2 ? 'auto' : ''}
-                right={index === 1 ? '9' : 'auto'}
+                right={index === 1 ? '9' : index === 3 || index === 4 ? '14px' : ''}
                 height={index === 5 ? '45%' : '40%'}
               >
                 <img
@@ -95,7 +96,7 @@ const Resources = () => {
               : null}
               </Box>
 
-              <Box position='relative' zIndex={1} p={7} pt='42%'>
+              <Box position='relative' zIndex={1} p={{base: 4, md: 7}} pt={{base: '48%', md: '42%'}}>
                 <Text
                   fontSize='18px'
                   textStyle='poppins'
@@ -123,9 +124,10 @@ const Resources = () => {
                   bg='#F2F2F2'
                   width='94px'
                   height='24px'
-                  borderRadius='9'
+                  borderRadius='10'
                   textAlign='center'
                   py='1'
+                  mt='5px'
                 >
                   {card.description}
                 </Box>

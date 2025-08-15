@@ -25,12 +25,13 @@ const Hero = () => {
     >
       <MotionText
         textStyle='poppins'
-        fontSize={['40px', '52px']}
+        fontSize={[ '18px', '52px']}
         fontWeight='bold'
         color='black'
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
+        mt={14}
       >
         Resources
       </MotionText>
@@ -38,7 +39,7 @@ const Hero = () => {
       <MotionText
         textStyle='inter'
         fontWeight='normal'
-        fontSize={['18px', '16px']}
+        fontSize={['16px', '16px']}
         align='center'
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
@@ -63,6 +64,7 @@ const Hero = () => {
           borderColor='#A1A1A1'
           fontSize={['14px', '16px']}
           pl='16'
+          textStyle='poppins'
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />

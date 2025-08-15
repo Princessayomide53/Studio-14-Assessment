@@ -61,7 +61,11 @@ const Nav = () => {
         boxShadow='md'
         px={7}
         py={4}
-        position='relative'
+        position="fixed"   
+        top={0}            
+        left={0}           
+        right={0}          
+        zIndex={50}   
       >
         {/* desktop */}
         <Flex
@@ -79,7 +83,9 @@ const Nav = () => {
           w='100%'
         >
           <HStack spacing={3} align='center'>
+            <Link href='/'>
             <img src={Logo} alt='Logo' />
+            </Link>
             <Text
               fontSize={{
                 base: '23px',
@@ -129,7 +135,7 @@ const Nav = () => {
                     location.pathname === link.links ? 'blue.500' : 'black'
                   }
                   textDecoration="none"        
-  _hover={{ textDecoration: 'none' }}
+                  _hover={{ textDecoration: 'none' }}
                 >
                   {link.label}
                 </Link>
@@ -212,7 +218,7 @@ const Nav = () => {
             initial='hidden'
             animate='visible'
             bg='white'
-            position='absolute'
+            position='fixed'
             top='70px'
             left='0'
             w='100%'
