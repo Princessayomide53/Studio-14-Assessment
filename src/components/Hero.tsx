@@ -53,7 +53,7 @@ const Hero = () => {
           bg='white'
           borderRadius='10px'
           borderColor='#A1A1A1'
-          size={['sm', 'lg']}
+          fontSize={['14px', '16px']}
           pl='16'
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}

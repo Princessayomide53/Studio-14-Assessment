@@ -29,7 +29,7 @@ const Resources = () => {
         pb={{ base: '10', md: '7' }}
       >
         {filteredResources.map((card, index) => {
-          const Icon = card.icon;
+          // const Icon = card.icon;
           return (
             <Box
               key={index}
@@ -64,7 +64,7 @@ const Resources = () => {
               </Box>
 
               <Box position='absolute' top='42px' left='25px' zIndex={2}>
-                <Icon size={32} color='black' />
+                {/* <Icon size={32} color='black' /> */}
               </Box>
               <Box position='relative' zIndex={1} p={7} pt='42%'>
                 <Text

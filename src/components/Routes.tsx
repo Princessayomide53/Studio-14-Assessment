@@ -5,13 +5,35 @@ import Resources from './Resources';
 import Home from '../Routes/Home';
 import Toolkit from '../Routes/Toolkit';
 import Dashboard from '../Routes/Dashboard';
+import Layout from './Layout';
 
 const AppRoutes: React.FC = () => {
   return (
     <Routes>
-      <Route path='/' element={<Home />} />
-      <Route path='/resources' element={<Toolkit />} />
-      <Route path='/toolkit' element={<Dashboard />} />
+      <Route
+        path='/'
+        element={
+          <Layout>
+            <Home />
+          </Layout>
+        }
+      />
+      <Route
+        path='/toolkit'
+        element={
+          <Layout>
+            <Toolkit />
+          </Layout>
+        }
+      />
+      <Route
+        path='/dashboard'
+        element={
+          <Layout>
+            <Dashboard />
+          </Layout>
+        }
+      />
     </Routes>
   );
 };

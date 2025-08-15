@@ -6,24 +6,25 @@ import {
   Divider,
   Link,
   Text,
-  Center,
   IconButton,
   VStack,
   chakra,
 } from '@chakra-ui/react';
 import Logo from '../assets/Svgs/Logo.svg';
-import { useColorMode, ChevronDownIcon } from '@chakra-ui/icons';
+import { ChevronDownIcon } from '@chakra-ui/icons';
 import { motion } from 'framer-motion';
 import { Switch } from '@chakra-ui/react';
 import { Twirl as Hamburger } from 'hamburger-react';
 import { useResources } from '../context/Resources';
-import Employee from '../Routes/Employee';
-import Home from '../Routes/Home';
+import { useLocation } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
+
 
 const Nav = () => {
   const [nav, setNav] = useState(false);
   const { role, setRole, activePage, setActivePage } = useResources();
   const MotionBox = chakra(motion.div);
+  const location = useLocation();
 
   const containerVariants = {
     hidden: { opacity: 0, y: -10 },
@@ -43,9 +44,9 @@ const Nav = () => {
   };
 
   const navLink = [
-    { id: 'dashboards', label: 'Dashboard' },
-    { id: 'resources', label: 'Resources' },
-    { id: 'toolkit', label: 'Toolkit' },
+    { id: 'dashboards', label: 'Dashboard', links: '/dashboard' },
+    { id: 'resources', label: 'Resources', links: '/' },
+    { id: 'toolkit', label: 'Toolkit', links: '/toolkit' },
   ];
 
   const handleRoleToggle = () => {
@@ -59,7 +60,7 @@ const Nav = () => {
         bg='white'
         boxShadow='md'
         px={7}
-        py={5}
+        py={4}
         position='relative'
       >
         {/* desktop */}
@@ -97,33 +98,43 @@ const Nav = () => {
           </HStack>
 
           <HStack spacing={8} display={{ base: 'none', md: 'flex' }}>
-            <Link
-              href='#dashboard'
-              fontSize={['12px', '14px']}
-              fontWeight='medium'
-              textStyle='poppins'
-            >
-              Dashboard
-            </Link>
-            <Link
-              href='#resources'
-              fontSize={['12px', '14px']}
-              fontWeight='medium'
-              textStyle='poppins'
-              // color={activePage === link.id ? 'blue.500' : 'black'}
-              // borderBottom={activePage === link.id ? '2px solid #3182ce' : 'none'}
-              // pb={activePage === link.id ? '2px' : '0'}
-            >
-              Resources
-            </Link>
-            <Link
-              href='#toolkit'
-              fontSize={['12px', '14px']}
-              fontWeight='medium'
-              textStyle='poppins'
-            >
-              Toolkit
-            </Link>
+            {navLink.map((link) => (
+              <Box
+                key={link.id}
+                fontSize={['12px', '14px']}
+                fontWeight='medium'
+                textStyle='poppins'
+                color={location.pathname === link.links ? 'blue.500' : 'black'}
+                position='relative'
+                _after={{
+                  content: '""',
+                  position: 'absolute',
+                  top: '43px',
+                  left: 0,
+                  width: '100%',
+                  height: '3px',
+                  bg:
+                    location.pathname === link.links
+                      ? '#3182ce'
+                      : 'transparent',
+                }}
+              >
+                <Link
+                  href={link.links}
+                  fontSize={['12px', '14px']}
+                  fontWeight='medium'
+                  textStyle='poppins'
+                  pb='20'
+                  color={
+                    location.pathname === link.links ? 'blue.500' : 'black'
+                  }
+                  textDecoration="none"        
+  _hover={{ textDecoration: 'none' }}
+                >
+                  {link.label}
+                </Link>
+              </Box>
+            ))}
           </HStack>
 
           <HStack spacing='4'>
@@ -221,18 +232,15 @@ const Nav = () => {
                 justifyContent='center'
               >
                 <Link
-                  onClick={() => {
-                    setActivePage(link.id);
-                    setNav(false);
-                  }}
+                  as={RouterLink}   
+                to={link.links}
+                onClick={() => setNav(false)}
                   fontWeight='medium'
-                  color={activePage === link.id ? 'blue.500' : 'black'}
-                  borderBottom={
-                    activePage === link.id ? '2px solid #3182ce' : 'none'
-                  }
-                  pb={activePage === link.id ? '2px' : '0'}
+                  color={location.pathname === link.links ? 'blue.500' : 'black'}
+                  borderBottom={location.pathname === link.links ? '2px solid #314EF9' : 'none'}
+                   pb={location.pathname === link.links ? '2px' : '0'}
+                  
                   textAlign='center'
-                  w='full'
                   mb='3'
                 >
                   {link.label}
@@ -242,7 +250,6 @@ const Nav = () => {
           </VStack>
         )}
       </Flex>
-      <Box mt={6}>{role === 'employer' ? <Home /> : <Employee />}</Box>
     </Box>
   );
 };
