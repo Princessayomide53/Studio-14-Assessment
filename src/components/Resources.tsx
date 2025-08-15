@@ -73,7 +73,7 @@ const Resources = () => {
                 position='absolute'
                 top={-3}
                 bottom={0}
-                left={index === 5 ? '24' : ''}
+                left={index === 5 ? '24' : index === 0 || index === 2 ? 'auto' : ''}
                 right={index === 1 ? '9' : 'auto'}
                 height={index === 5 ? '45%' : '40%'}
               >
