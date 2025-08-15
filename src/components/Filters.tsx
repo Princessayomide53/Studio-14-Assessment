@@ -12,17 +12,26 @@ import {
 import { motion, AnimatePresence } from 'framer-motion';
 import { IconButton } from '@chakra-ui/react';
 import { IoFilter } from 'react-icons/io5';
+import { useResources } from '../context/Resources';
 
 const MotionBox = motion(Box);
 
 type CustomCheckboxProps = {
   value: string;
+  isChecked: boolean;
+  onChange: (value: string) => void;
   children: React.ReactNode;
 };
 
-const CustomCheckbox: React.FC<CustomCheckboxProps> = (props) => {
-  const { state, getCheckboxProps, getInputProps, getLabelProps } =
-    useCheckbox(props);
+const CustomCheckbox: React.FC<CustomCheckboxProps> = ({
+  value,
+  isChecked,
+  onChange,
+  children,
+}) => {
+  const { state, getCheckboxProps, getInputProps, getLabelProps } = useCheckbox(
+    { value, isChecked, onChange: () => onChange(value) }
+  );
 
   return (
     <Box as='label' display='flex' alignItems='center'>
@@ -41,18 +50,27 @@ const CustomCheckbox: React.FC<CustomCheckboxProps> = (props) => {
         borderColor={state.isChecked ? 'black' : 'gray.400'}
       />
       <Box as='span' {...getLabelProps()}>
-        {props.children}
+        {children}
       </Box>
     </Box>
   );
 };
 
+type FilterItem = string | { label: string; value: string };
+
 type SectionProps = {
   title: string;
-  items: string[];
+  items: FilterItem[];
+  selectedFilters: string[];
+  toggleFilter: (filter: string) => void;
 };
 
-const Section: React.FC<SectionProps> = ({ title, items }) => (
+const Section: React.FC<SectionProps> = ({
+  title,
+  items,
+  selectedFilters,
+  toggleFilter,
+}) => (
   <VStack align='start' spacing={2}>
     <Heading
       textStyle='inter'
@@ -63,24 +81,36 @@ const Section: React.FC<SectionProps> = ({ title, items }) => (
     >
       {title}
     </Heading>
-    {items.map((item, index) => (
-      <CustomCheckbox key={index} value={item}>
-        <Box
-          fontSize='16px'
-          fontWeight='normal'
-          textStyle='inter'
-          color='#3F3F3F'
+
+    {items.map((item, index) => {
+      const value = typeof item === 'string' ? item : item.value;
+      const label = typeof item === 'string' ? item : item.label;
+
+      return (
+        <CustomCheckbox
+          key={index}
+          value={value}
+          isChecked={selectedFilters.includes(value)}
+          onChange={toggleFilter}
         >
-          {item}{' '}
-        </Box>
-      </CustomCheckbox>
-    ))}
+          <Box
+            fontSize='16px'
+            fontWeight='normal'
+            textStyle='inter'
+            color='#3F3F3F'
+          >
+            {label}
+          </Box>
+        </CustomCheckbox>
+      );
+    })}
   </VStack>
 );
 
 const Filters: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
+  const { selectedFilters, toggleFilter } = useResources();
 
   useEffect(() => {
     const handleResize = () => {
@@ -99,7 +129,7 @@ const Filters: React.FC = () => {
         'Sense of Appreciation',
         'Learning Organisation',
         'Mission and Vision',
-        'Mission and Vision',
+        'Wellbeing',
       ],
     },
     {
@@ -108,7 +138,13 @@ const Filters: React.FC = () => {
     },
     {
       title: 'Categories',
-      items: ['Sample', 'Sample', 'Sample', 'Sample', 'Sample'],
+      items: [
+        { label: 'Sample', value: 'sample-1' },
+        { label: 'Sample', value: 'sample-2' },
+        { label: 'Sample', value: 'sample-3' },
+        { label: 'Sample', value: 'sample-4' },
+        { label: 'Sample', value: 'sample-5' },
+      ],
     },
   ];
 
@@ -166,7 +202,12 @@ const Filters: React.FC = () => {
             >
               {sections.map((section, idx) => (
                 <Box key={idx} mb={idx !== sections.length - 1 ? 6 : 0}>
-                  <Section title={section.title} items={section.items} />
+                  <Section
+                    title={section.title}
+                    items={section.items}
+                    selectedFilters={selectedFilters}
+                    toggleFilter={toggleFilter}
+                  />
                 </Box>
               ))}
             </MotionBox>
@@ -182,7 +223,12 @@ const Filters: React.FC = () => {
             <Divider width='271px' borderColor='#E0E0E0' />
             {sections.map((section, idx) => (
               <Box key={idx} mb={idx !== sections.length - 1 ? 6 : 0}>
-                <Section title={section.title} items={section.items} />
+                <Section
+                  title={section.title}
+                  items={section.items}
+                  selectedFilters={selectedFilters}
+                  toggleFilter={toggleFilter}
+                />
               </Box>
             ))}
           </>

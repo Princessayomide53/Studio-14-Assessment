@@ -3,15 +3,15 @@ import {
   Text,
   InputGroup,
   Input,
-  InputRightElement,
-  IconButton,
   InputLeftElement,
   Box,
 } from '@chakra-ui/react';
 import { SearchIcon } from '@chakra-ui/icons';
 import React from 'react';
+import { useResources } from '../context/Resources';
 
 const Hero = () => {
+  const { searchTerm, setSearchTerm } = useResources();
   return (
     <Flex
       bg='#FAFAFA'
@@ -53,8 +53,10 @@ const Hero = () => {
           bg='white'
           borderRadius='10px'
           borderColor='#A1A1A1'
-          size='lg'
+          size={['sm', 'lg']}
           pl='16'
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
         />
       </InputGroup>
     </Flex>

@@ -1,68 +1,14 @@
-import { Flex, Box, Grid, SimpleGrid, Text, Tag } from '@chakra-ui/react';
+import { Flex, Box, SimpleGrid, Text } from '@chakra-ui/react';
 import React from 'react';
 import Filters from './Filters';
-import red from '../assets/Svgs/red.svg';
-import yellow from '../assets/Svgs/yellow.svg';
-import green from '../assets/Svgs/green.svg';
-import orange from '../assets/Svgs/orange.svg';
-import blue from '../assets/Svgs/blue.svg';
-import { PiFilePdfDuotone, PiVideo, PiLinkBold } from 'react-icons/pi';
-const Resources = () => {
-  const content = [
-    {
-      id: 1,
-      icon: <PiLinkBold size={32} color='black' />,
-      img: red,
-      title: 'The ultimate guide to Workplace Chat',
-      text: 'Sample Topic',
-      description: 'Secure Base',
-    },
-    {
-      id: 2,
-      icon: <PiVideo size={32} color='black' />,
-      img: green,
-      title: 'The ultimate guide to Workplace Chat',
-      text: 'Sample Topic',
-      description: 'Secure Base',
-    },
-    {
-      id: 3,
-      icon: <PiLinkBold size={32} color='black' />,
 
-      img: red,
-      title: 'The ultimate guide to Workplace Chat',
-      text: 'Sample Topic',
-      description: 'Secure Base',
-    },
-    {
-      id: 4,
-      img: orange,
-      icon: <PiVideo size={32} color='black' />,
-      title: 'The ultimate guide to Workplace Chat',
-      text: 'Sample Topic',
-      description: 'Wellbeing',
-    },
-    {
-      id: 5,
-      img: yellow,
-      icon: <PiFilePdfDuotone size={32} color='black' />,
-      title: 'The ultimate guide to Workplace Chat',
-      text: 'Sample Topic',
-      description: 'Secure Base',
-    },
-    {
-      id: 6,
-      img: blue,
-      icon: <PiFilePdfDuotone size={32} color='black' />,
-      title: 'Taking stock of mental health in your workplace',
-      text: 'Sample Topic',
-      description: 'Secure Base',
-    },
-  ];
+import { useResources } from '../context/Resources';
+const Resources = () => {
+  const { filteredResources } = useResources();
+
   return (
     <Flex
       direction={{ base: 'column', md: 'row' }}
-      alignItems='flex-start'
       maxW={{ base: '100%', md: '62em', lg: '80em', xl: '80em' }}
       mx='auto'
       px={{ base: '0', md: '6' }}
@@ -82,7 +28,7 @@ const Resources = () => {
         justifyItems={{ base: 'center', lg: 'stretch' }}
         pb={{ base: '10', md: '7' }}
       >
-        {content.map((card, index) => (
+        {filteredResources.map((card, index) => (
           <Box
             key={index}
             position='relative'

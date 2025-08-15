@@ -1,0 +1,164 @@
+import React, {
+  createContext,
+  useState,
+  useContext,
+  useMemo,
+  ReactNode,
+  ReactElement,
+} from 'react';
+import red from '../assets/Svgs/red.svg';
+import yellow from '../assets/Svgs/yellow.svg';
+import green from '../assets/Svgs/green.svg';
+import orange from '../assets/Svgs/orange.svg';
+import blue from '../assets/Svgs/blue.svg';
+import { PiFilePdfDuotone, PiVideo, PiLinkBold } from 'react-icons/pi';
+
+interface Resource {
+  id: number;
+  icon: ReactElement;
+  img: string;
+  title: string;
+  text: string;
+  description: string;
+  type: string;
+  category: string;
+}
+
+interface ResourcesContextType {
+  resources: Resource[];
+  filteredResources: Resource[];
+  searchTerm: string;
+  setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
+  selectedFilters: string[];
+  toggleFilter: (filter: string) => void;
+}
+
+const ResourcesContext = createContext<ResourcesContextType | undefined>(
+  undefined
+);
+
+interface ResourcesProviderProps {
+  children: ReactNode;
+}
+
+export const ResourcesProvider = ({ children }: ResourcesProviderProps) => {
+  const initialResources: Resource[] = [
+    {
+      id: 1,
+      icon: <PiLinkBold size={32} color='black' />,
+      img: red,
+      title: 'The ultimate guide to Workplace Chat',
+      text: 'Sample Topic',
+      description: 'Secure Base',
+      type: 'Link',
+      category: 'sample-1',
+    },
+    {
+      id: 2,
+      icon: <PiVideo size={32} color='black' />,
+      img: green,
+      title: 'The ultimate guide to Workplace Chat',
+      text: 'Sample Topic',
+      description: 'Secure Base',
+      type: 'Video',
+      category: 'sample-2',
+    },
+    {
+      id: 3,
+      icon: <PiLinkBold size={32} color='black' />,
+      img: red,
+      title: 'The ultimate guide to Workplace Chat',
+      text: 'Sample Topic',
+      description: 'Secure Base',
+      type: 'Link',
+      category: 'sample-3',
+    },
+    {
+      id: 4,
+      img: orange,
+      icon: <PiVideo size={32} color='black' />,
+      title: 'The ultimate guide to Workplace Chat',
+      text: 'Sample Topic',
+      description: 'Wellbeing',
+      type: 'Video',
+      category: 'sample-4',
+    },
+    {
+      id: 5,
+      img: yellow,
+      icon: <PiFilePdfDuotone size={32} color='black' />,
+      title: 'The ultimate guide to Workplace Chat',
+      text: 'Sample Topic',
+      description: 'Secure Base',
+      type: 'PDF',
+      category: 'sample-5',
+    },
+    {
+      id: 6,
+      img: blue,
+      icon: <PiFilePdfDuotone size={32} color='black' />,
+      title: 'Taking stock of mental health in your workplace',
+      text: 'Sample Topic',
+      description: 'Secure Base',
+      type: 'PDF',
+      category: 'sample-6',
+    },
+  ];
+
+  const [resources] = useState<Resource[]>(initialResources);
+  const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
+  const [searchTerm, setSearchTerm] = useState<string>('');
+
+  const filteredResources = useMemo(() => {
+    const searchWords = searchTerm.toLowerCase().trim().split(/\s+/);
+
+    return resources.filter((item) => {
+      const matchesSearch = searchWords.every(
+        (word) =>
+          item.title.toLowerCase().includes(word) ||
+          item.text.toLowerCase().includes(word) ||
+          item.description.toLowerCase().includes(word) ||
+          item.type.toLowerCase().includes(word)
+      );
+
+      const matchesFilter =
+        selectedFilters.length === 0 ||
+        selectedFilters.includes(item.description) ||
+        selectedFilters.includes(item.type) ||
+        selectedFilters.includes(item.category);
+
+      return matchesSearch && matchesFilter;
+    });
+  }, [resources, searchTerm, selectedFilters]);
+
+  const toggleFilter = (filter: string) => {
+    setSelectedFilters((prev) =>
+      prev.includes(filter)
+        ? prev.filter((f) => f !== filter)
+        : [...prev, filter]
+    );
+  };
+
+  return (
+    <ResourcesContext.Provider
+      value={{
+        resources,
+        filteredResources,
+        searchTerm,
+        setSearchTerm,
+        selectedFilters,
+        toggleFilter,
+      }}
+    >
+      {children}
+    </ResourcesContext.Provider>
+  );
+};
+
+export const useResources = () => {
+  const context = useContext(ResourcesContext);
+  if (!context) {
+    throw new Error('useResources must be used within a ResourcesProvider');
+  }
+  return context;
+};
