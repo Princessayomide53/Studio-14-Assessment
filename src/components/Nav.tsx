@@ -59,7 +59,7 @@ const Nav = () => {
         as='nav'
         bg='white'
         boxShadow='md'
-        px={7}
+        px={{base: 7, xs: 2.5, md: 7}}
         py={4}
         position="fixed"   
         top={0}            
@@ -74,6 +74,7 @@ const Nav = () => {
           wrap='wrap'
           maxW={{
             base: '100%',
+            xs: '18em',
             sm: '48em',
             md: '64em',
             lg: '75em',

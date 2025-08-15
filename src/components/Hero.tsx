@@ -25,13 +25,13 @@ const Hero = () => {
     >
       <MotionText
         textStyle='poppins'
-        fontSize={[ '18px', '52px']}
+        fontSize={{base: '32px', md: '52px'}}
         fontWeight='bold'
         color='black'
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        mt={14}
+        mt={{base: 20, md: 14}}
       >
         Resources
       </MotionText>
@@ -39,7 +39,7 @@ const Hero = () => {
       <MotionText
         textStyle='inter'
         fontWeight='normal'
-        fontSize={['16px', '16px']}
+        fontSize={{base: '14px', md: '16px'}}
         align='center'
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
