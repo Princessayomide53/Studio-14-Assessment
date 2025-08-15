@@ -75,17 +75,15 @@ const Resources = () => {
                 top={-3}
                 bottom={0}
                 left={
-                  card.id === 5 ? '-45px' :
-                     card.id === 1 || card.id === 2 || card.id === 6 ? '0px' :
-                     ''
+                     card.id === 1 ? '50px' : card.id === 6 ? '120px' : ''
                       }
                 right={
                       card.id === 3 ? '-26px' :
-                       card.id === 5 ? '-20px' :
-                       card.id === 1 || card.id === 2 || card.id === 6 ? '0px' :
+                       card.id === 5 ? 'auto' :
+                       
                          ''
                           }
-                height={{ base: card.id === 6 ? '35%' : '32%', md:card.id === 6 ? '45%' : '40%' }}
+                height={{ base: card.id === 6 ? '35%' : '32%', }}
               >
                 <img
                   src={card.img}
@@ -93,7 +91,7 @@ const Resources = () => {
                   style={{
                     width: '100%',
                     height: '100%',
-                    objectFit: 'cover',
+                    objectFit: 'contain',
                   }}
                 />
               </Box>
