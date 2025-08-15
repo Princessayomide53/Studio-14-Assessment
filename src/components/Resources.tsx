@@ -53,10 +53,10 @@ const Resources = () => {
         pb={{ base: 10, md: 7 }}
 
       >
-        {filteredResources.map((card, id) => {
+        {filteredResources.map((card) => {
           return (
             <MotionBox
-              key={index}
+              key={card.id}
               position='relative'
               bg='white'
               borderRadius='10px'
@@ -85,7 +85,7 @@ const Resources = () => {
                        card.id === 1 || card.id === 2 || card.id === 6 ? '0px' :
                          ''
                           }
-                height={{ base: Card.id === 6 ? '35%' : '32%', md: index === 6 ? '45%' : '40%' }}
+                height={{ base: card.id === 6 ? '35%' : '32%', md:card.id === 6 ? '45%' : '40%' }}
               >
                 <img
                   src={card.img}
@@ -111,7 +111,7 @@ const Resources = () => {
                   textStyle='poppins'
                   fontWeight='bold'
                   mb={2}
-                  mt={index === 5 ? '-7' : ''}
+                  mt={card.id === 6 ? '-7' : ''}
                 >
                   {card.title}
                 </Text>
